@@ -3,7 +3,7 @@
 /**
  * _printf - Produces output according to a format
  * @format: Format string containing format specifiers
- * Return: Number of characters printed 
+ * Return: Number of characters printed
  */
 int _printf(const char *format, ...)
 {
@@ -17,18 +17,18 @@ while (*format)
 if (*format == '%')
 {
 format++;
-if (*format == 'c') 
+if (*format == 'c')
 count += _putchar(va_arg(args, int));
-else if (*format == 's') 
+else if (*format == 's')
 count += print_string(va_arg(args, char *));
-else if (*format == '%') 
+else if (*format == '%')
 count += _putchar('%');
-else if (*format == 'd' || *format == 'i') 
+else if (*format == 'd' || *format == 'i')
 count += print_number(va_arg(args, int));
 else
 {
 count += _putchar('%');
-count += _putchar(*format); 
+count += _putchar(*format);
 }
 }
 else
