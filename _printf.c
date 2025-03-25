@@ -16,8 +16,6 @@ while (*format)
 {
 if (*format == '%')
 {
-if (*format == '\0)
-return (-1);
 format++;
 if (*format == 'c')
 count += _putchar(va_arg(args, int));
