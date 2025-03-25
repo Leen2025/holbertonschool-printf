@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <unistd.h>
 /**
  * _printf - Produces output according to a format
  * @format: Format string containing format specifiers
@@ -9,7 +10,7 @@ int _printf(const char *format, ...)
 {
 va_list args;
 int count = 0;
-if (!format)
+if (!format || (format[0] == '%' && format[1] == '\0')) 
 return (-1);
 va_start(args, format);
 while (*format)
@@ -17,6 +18,8 @@ while (*format)
 if (*format == '%')
 {
 format++;
+if (*format == '\0')
+return (-1);
 if (*format == 'c')
 count += _putchar(va_arg(args, int));
 else if (*format == 's')
