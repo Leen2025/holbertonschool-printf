@@ -1,0 +1,249 @@
+.TH _PRINTF 3 "March 2025" "Version 1.0" "C Library Functions"
+.SH NAME
+_printf \- custom printf implementation for formatted output
+.SH SYNOPSIS
+.B #include "main.h"
+.PP
+.BI "int _printf(const char *" format ", ...);"
+.SH DESCRIPTION
+The \fB_printf()\fP function produces output according to a format string. It writes the output to the standard output stream (stdout). This is a custom implementation of the standard library printf function with support for basic format specifiers.
+.PP
+The format string is composed of zero or more directives: ordinary characters (not %), which are copied unchanged to the output stream; and conversion specifications, each of which results in fetching zero or more subsequent arguments.
+.PP
+Each conversion specification is introduced by the character \fB%\fP and ends with a conversion specifier. The arguments must correspond properly with the conversion specifier. By default, the arguments are used in the order given.
+.PP
+The function processes the format string character by character. When it encounters a regular character (not %), it directly outputs that character. When it encounters a % character, it interprets the next character as a format specifier and processes the corresponding argument accordingly.
+.SH FORMAT SPECIFIERS
+The following format specifiers are supported:
+.TP
+.B %c
+Prints a single character. The argument is converted to an unsigned char and the resulting character is written. The character is passed as an int but only the lowest 8 bits are used.
+.TP
+.B %s
+Prints a string. The argument must be a pointer to a null-terminated string. If the argument is NULL, the string "(null)" is printed instead.
+.TP
+.B %%
+Prints a literal '%' character. No argument is converted.
+.TP
+.B %d, %i
+Prints a signed decimal integer. The argument is converted to signed decimal notation. Negative numbers are preceded by a minus sign ('-'). The function handles both positive and negative integers correctly.
+.PP
+For unsupported format specifiers, the function prints the % character followed by the unsupported specifier character.
+.SH RETURN VALUE
+Upon successful completion, \fB_printf()\fP returns the number of characters printed (excluding the null byte used to end output to strings).
+.PP
+If an output error is encountered, a negative value is returned.
+.SH ERRORS
+The function will return -1 if:
+.TP
+.B format is NULL
+The format string pointer is NULL.
+.TP
+.B format is "%"
+The format string consists of only a % character with no following format specifier.
+.TP
+.B format contains a % at the end
+The format string ends with a % character.
+.SH EXAMPLES
+.PP
+Print a string:
+.PP
+.nf
+.RS
+_printf("Hello, world!\\n");
+.RE
+.fi
+.PP
+Output:
+.PP
+.nf
+.RS
+Hello, world!
+.RE
+.fi
+.PP
+Print a character:
+.PP
+.nf
+.RS
+_printf("The first letter of the alphabet is %c\\n", 'A');
+.RE
+.fi
+.PP
+Output:
+.PP
+.nf
+.RS
+The first letter of the alphabet is A
+.RE
+.fi
+.PP
+Print a string variable:
+.PP
+.nf
+.RS
+char *str = "example";
+_printf("This is an %s\\n", str);
+.RE
+.fi
+.PP
+Output:
+.PP
+.nf
+.RS
+This is an example
+.RE
+.fi
+.PP
+Print an integer:
+.PP
+.nf
+.RS
+_printf("The answer is %d\\n", 42);
+.RE
+.fi
+.PP
+Output:
+.PP
+.nf
+.RS
+The answer is 42
+.RE
+.fi
+.PP
+Print a negative integer:
+.PP
+.nf
+.RS
+_printf("Temperature: %d degrees\\n", -5);
+.RE
+.fi
+.PP
+Output:
+.PP
+.nf
+.RS
+Temperature: -5 degrees
+.RE
+.fi
+.PP
+Print multiple format specifiers:
+.PP
+.nf
+.RS
+_printf("Name: %s, Age: %d, Grade: %c\\n", "John", 25, 'A');
+.RE
+.fi
+.PP
+Output:
+.PP
+.nf
+.RS
+Name: John, Age: 25, Grade: A
+.RE
+.fi
+.PP
+Print a literal percent sign:
+.PP
+.nf
+.RS
+_printf("Discount: 25%%\\n");
+.RE
+.fi
+.PP
+Output:
+.PP
+.nf
+.RS
+Discount: 25%
+.RE
+.fi
+.SH HELPER FUNCTIONS
+The _printf implementation uses the following helper functions:
+.TP
+.B _putchar(char c)
+Writes a character to stdout using the write system call. Returns 1 on success, which represents the number of bytes written.
+.PP
+.nf
+.RS
+int _putchar(char c)
+{
+    return (write(1, &c, 1));
+}
+.RE
+.fi
+.TP
+.B print_string(char *str)
+Prints a string to stdout character by character using _putchar. If the string is NULL, it prints "(null)" instead. Returns the number of characters printed.
+.PP
+.nf
+.RS
+int print_string(char *str)
+{
+    int count = 0;
+    if (!str)
+        str = "(null)";
+    while (*str)
+        count += _putchar(*str++);
+    return (count);
+}
+.RE
+.fi
+.TP
+.B print_number(int n)
+Prints an integer to stdout using _putchar. Handles both positive and negative integers. Uses recursion to print multi-digit numbers. Returns the number of characters printed.
+.PP
+.nf
+.RS
+int print_number(int n)
+{
+    int count = 0;
+    unsigned int num;
+    if (n < 0)
+    {
+        count += _putchar('-');
+        num = -n;
+    }
+    else
+        num = n;
+    if (num / 10)
+        count += print_number(num / 10);
+    count += _putchar(num % 10 + '0');
+    return (count);
+}
+.RE
+.fi
+.SH LIMITATIONS
+This implementation of _printf has the following limitations:
+.TP
+.B Limited format specifiers
+Only supports %c, %s, %%, %d, and %i format specifiers.
+.TP
+.B No field width or precision
+Does not support field width or precision specifications (e.g., %5d, %.2f).
+.TP
+.B No flag characters
+Does not support flag characters (e.g., -, +, space, #, 0).
+.TP
+.B No length modifiers
+Does not support length modifiers (e.g., h, l, ll).
+.TP
+.B No floating-point support
+Does not support floating-point format specifiers (e.g., %f, %e, %g).
+.SH FILES
+.TP
+.B main.h
+Header file containing function prototypes.
+.SH SEE ALSO
+.BR printf (3),
+.BR fprintf (3),
+.BR sprintf (3),
+.BR write (2)
+.SH AUTHOR
+Custom implementation
+.SH BUGS
+No known bugs.
+.SH COPYRIGHT
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
