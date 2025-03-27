@@ -31,7 +31,9 @@ int _printf(const char *format, ...)
 	va_list args;
 	int count = 0;
 	buffer_index = 0;
-	int plus_flag, space_flag, hash_flag;
+	int plus_flag;
+	int space_flag;
+	int hash_flag;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
