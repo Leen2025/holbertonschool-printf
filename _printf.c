@@ -82,11 +82,32 @@ int _printf(const char *format, ...)
 			else if (*format == 'u')
                                 count += print_unsigned(va_arg(args, unsigned int));
                         else if (*format == 'o')
-                                count += print_octal(va_arg(args, unsigned int));
+                                {
+                unsigned int num = va_arg(args, unsigned int);
+                if (hash_flag && num != 0)
+                    count += _putchar_buffered('0');
+                count += print_octal(num);
+            }
                         else if (*format == 'x')
-                                count += print_hex_lower(va_arg(args, unsigned int));
+                                 {
+                unsigned int num = va_arg(args, unsigned int);
+                if (hash_flag && num != 0)
+                {
+                    count += _putchar_buffered('0');
+                    count += _putchar_buffered('x');
+                }
+                count += print_hex_lower(num);
+            }
                         else if (*format == 'X')
-                                count += print_hex_upper(va_arg(args, unsigned int));
+			{
+                                unsigned int num = va_arg(args, unsigned int);
+                if (hash_flag && num != 0)
+                {
+                    count += _putchar_buffered('0');
+                    count += _putchar_buffered('X');
+                }
+                count += print_hex_upper(num);
+			}
 			 else if (*format == 'S')
                                 count += print_S(va_arg(args, char *));
 			   else if (*format == 'p')
