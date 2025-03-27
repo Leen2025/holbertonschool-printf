@@ -4,10 +4,27 @@
 * _putchar - Writes a character to stdout
 * @c: Character to print
 * Return: 1 on success
+* 
 */
+buffer_index = 0;
+output_buffer[1024];
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	output_buffer[buffer_index++]=c;
+	if(buffer_index == 1024)
+	{
+		write(1,output_buffer,buffer_index);
+		buffer_index = 0;
+	}
+	return (1);
+}
+void flash_buffer(void)
+{
+	if (buffer_index > 0)
+	{
+		write(1,output_buffer,buffer_index);
+		buffer_index = 0;
+	}
 }
 /**
 * print_string - Prints a string
