@@ -16,8 +16,8 @@ int print_pointer(void *ptr)
     address = (unsigned long int)ptr;
     
     /* Print the "0x" prefix */
-    count += _putchar_buffered('0');
-    count += _putchar_buffered('x');
+    count += _putchar('0');
+    count += _putchar('x');
     
     /* Print the address in lowercase hexadecimal */
     count += print_hex_long(address);
@@ -40,7 +40,7 @@ int print_hex_long(unsigned long int n)
     
     /* For a value of 0, just print '0' */
     if (n == 0)
-        return (_putchar_buffered('0'));
+        return (_putchar('0'));
     
     /* Calculate how many hex digits we need (up to 16 for 64-bit) */
     for (i = 15; i >= 0; i--)
@@ -52,7 +52,7 @@ int print_hex_long(unsigned long int n)
             continue;
             
         started = 1;
-        count += _putchar_buffered(hex_digits[temp]);
+        count += _putchar(hex_digits[temp]);
     }
     
     return (count);
