@@ -31,6 +31,8 @@ int _printf(const char *format, ...)
 	va_list args;
 	int count = 0;
 	buffer_index = 0;
+	int plus_flag, space_flag, hash_flag;
+
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
@@ -42,6 +44,19 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == '\0')
 				return (-1);
+			plus_flag = 0;
+			space_flag = 0;
+			hash_flag = 0;
+			while (*format == '+' || *format == ' ' || *format == '#')
+			{
+				if (*format == '+')
+					plus_flag = 1;
+				else if (*format == ' ')
+					space_flag = 1;
+				else if (*format == '#')
+					hash_flag = 1;
+				format++;
+			}
 			if (*format == 'c')
 				count += _putchar(va_arg(args, int));
 			else if (*format == 's')
@@ -49,7 +64,17 @@ int _printf(const char *format, ...)
 			else if (*format == '%')
 				count += _putchar('%');
 			else if (*format == 'd' || *format == 'i')
-				count += print_number(va_arg(args, int));
+				{
+                int num = va_arg(args, int);
+                if (num >= 0)
+                {
+                    if (plus_flag)
+                        count += _putchar('+');
+                    else if (space_flag)
+                        count += _putchar(' ');
+                }
+                count += print_number(num);
+            }
 			else if  (*format == 'b')
                                 count += print_binary(va_arg(args, unsigned int ));
 			else if (*format == 'u')
@@ -67,6 +92,12 @@ int _printf(const char *format, ...)
 			else
 			{
 				count += _putchar('%');
+				if (plus_flag)
+                    count += _putchar('+');
+                if (space_flag)
+                    count += _putchar(' ');
+                if (hash_flag)
+                    count += _putchar('#');
 				count += _putchar(*format);
 			}
 		}
