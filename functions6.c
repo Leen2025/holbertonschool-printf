@@ -1,4 +1,9 @@
 #include "main.h"
+/**
+ * print_pointer - Prints a pointer address
+ * @ptr: Pointer to print
+ * Return: Number of characters printed
+ */
 int print_pointer(void *ptr)
 {
 	int count = 0;
