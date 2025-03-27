@@ -5,26 +5,7 @@
 * @c: Character to print
 * Return: 1 on success
 */
-int buffer_index = 0;
-char output_buffer[1024];
-int _putchar(char c)
-{
-	output_buffer[buffer_index++]=c;
-	if(buffer_index == 1024)
-	{
-		write(1,output_buffer,buffer_index);
-		buffer_index = 0;
-	}
-	return (1);
-}
-void flash_buffer(void)
-{
-	if (buffer_index > 0)
-	{
-		write(1,output_buffer,buffer_index);
-		buffer_index = 0;
-	}
-}
+
 /**
 * print_string - Prints a string
 * @str: String to print
