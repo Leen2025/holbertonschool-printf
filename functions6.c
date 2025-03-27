@@ -12,7 +12,7 @@ int print_pointer(void *ptr)
 	{
 		return(print_string("(null)"));
 	}
-				address = (unsigned long int) ptr;
+	address = (unsigned long int)ptr;
 				count += _putchar('0');
 				count += _putchar('x');
 				count += print_hex_lower(address);
