@@ -65,9 +65,11 @@ int _printf(const char *format, ...)
 				count += print_string(va_arg(args, char *));
 			else if (*format == '%')
 			{
-				/* Always print a percent sign, regardless of flags */
-				count += _putchar('%');
-			}
+    /* For % specifier, print % and add a space if space_flag is set */
+    count += _putchar('%');
+    if (space_flag)
+        count += _putchar(' ');
+}
 			else if (*format == 'd' || *format == 'i')
 			{
                 int num = va_arg(args, int);
