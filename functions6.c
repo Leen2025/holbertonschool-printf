@@ -10,7 +10,7 @@ int print_pointer(void *ptr)
 	unsigned long int address;
 	if ( ptr == NULL)
 	{
-		return(print_string("(null)"));
+		return(print_string("0x0"));
 	}
 	address = (unsigned long int)ptr;
 				count += _putchar('0');
