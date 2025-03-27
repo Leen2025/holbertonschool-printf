@@ -82,31 +82,31 @@ int _printf(const char *format, ...)
 			else if (*format == 'u')
                                 count += print_unsigned(va_arg(args, unsigned int));
                         else if (*format == 'o')
-                                {
-                unsigned int num = va_arg(args, unsigned int);
-                if (hash_flag && num != 0)
-                    count += _putchar_buffered('0');
-                count += print_octal(num);
-            }
-                        else if (*format == 'x')
-                                 {
-                unsigned int num = va_arg(args, unsigned int);
-                if (hash_flag && num != 0)
-                {
-                    count += _putchar_buffered('0');
-                    count += _putchar_buffered('x');
-                }
-                count += print_hex_lower(num);
-            }
-                        else if (*format == 'X')
+			{
+				unsigned int num = va_arg(args, unsigned int);
+				if (hash_flag && num != 0)
+						count += _putchar('0');
+				count += print_octal(num);
+			}
+			else if (*format == 'x')
+			{
+				unsigned int num = va_arg(args, unsigned int);
+				if (hash_flag && num != 0)
+				{
+					count += _putchar('0');
+					count += _putchar('x');
+				}
+				count += print_hex_lower(num);
+			}
+			else if (*format == 'X')
 			{
                                 unsigned int num = va_arg(args, unsigned int);
-                if (hash_flag && num != 0)
-                {
-                    count += _putchar_buffered('0');
-                    count += _putchar_buffered('X');
-                }
-                count += print_hex_upper(num);
+				if (hash_flag && num != 0)
+				{
+					count += _putchar('0');
+					count += _putchar('X');
+				}
+				count += print_hex_upper(num);
 			}
 			 else if (*format == 'S')
                                 count += print_S(va_arg(args, char *));
