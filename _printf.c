@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int count = 0;
-	buffer_index = 0;
+	int buffer_index = 0;
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 			count += _putchar(*format);
 		format++;
 	}
-flash_buffer(void);
+flash_buffer();
 	va_end(args);
 	return (count);
 }

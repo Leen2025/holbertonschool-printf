@@ -4,10 +4,9 @@
 * _putchar - Writes a character to stdout
 * @c: Character to print
 * Return: 1 on success
-* 
 */
-buffer_index = 0;
-output_buffer[1024];
+int buffer_index = 0;
+char output_buffer[1024];
 int _putchar(char c)
 {
 	output_buffer[buffer_index++]=c;
