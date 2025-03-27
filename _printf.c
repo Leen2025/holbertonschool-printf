@@ -18,7 +18,7 @@ int _putchar(char c)
         }
         return (1);
 }
-void flash_buffer(void)
+void flush_buffer(void)  /* Fixed typo: changed "flash_buffer" to "flush_buffer" */
 {
         if (buffer_index > 0)
         {
@@ -64,9 +64,12 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 				count += print_string(va_arg(args, char *));
 			else if (*format == '%')
+			{
+				/* Always print a percent sign, regardless of flags */
 				count += _putchar('%');
+			}
 			else if (*format == 'd' || *format == 'i')
-				{
+			{
                 int num = va_arg(args, int);
                 if (num >= 0)
                 {
@@ -78,10 +81,10 @@ int _printf(const char *format, ...)
                 count += print_number(num);
             }
 			else if  (*format == 'b')
-                                count += print_binary(va_arg(args, unsigned int ));
+                count += print_binary(va_arg(args, unsigned int ));
 			else if (*format == 'u')
-                                count += print_unsigned(va_arg(args, unsigned int));
-                        else if (*format == 'o')
+                count += print_unsigned(va_arg(args, unsigned int));
+            else if (*format == 'o')
 			{
 				unsigned int num = va_arg(args, unsigned int);
 				if (hash_flag && num != 0)
@@ -100,7 +103,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'X')
 			{
-                                unsigned int num = va_arg(args, unsigned int);
+                unsigned int num = va_arg(args, unsigned int);
 				if (hash_flag && num != 0)
 				{
 					count += _putchar('0');
@@ -108,10 +111,10 @@ int _printf(const char *format, ...)
 				}
 				count += print_hex_upper(num);
 			}
-			 else if (*format == 'S')
-                                count += print_S(va_arg(args, char *));
-			   else if (*format == 'p')
-                                count += print_pointer(va_arg(args, void *));
+			else if (*format == 'S')
+                count += print_S(va_arg(args, char *));
+			else if (*format == 'p')
+                count += print_pointer(va_arg(args, void *));
 			else
 			{
 				count += _putchar('%');
@@ -128,7 +131,8 @@ int _printf(const char *format, ...)
 			count += _putchar(*format);
 		format++;
 	}
-flash_buffer();
+flush_buffer();  /* Make sure to call flush_buffer, not flash_buffer */
 	va_end(args);
 	return (count);
 }
+
