@@ -6,6 +6,26 @@
 * @format: Format string containing format specifiers
 * Return: Number of characters printed
 */
+int buffer_index = 0;
+char output_buffer[1024];
+int _putchar(char c)
+{
+        output_buffer[buffer_index++]=c;
+        if(buffer_index == 1024)
+        {
+                write(1,output_buffer,buffer_index);
+                buffer_index = 0;
+        }
+        return (1);
+}
+void flash_buffer(void)
+{
+        if (buffer_index > 0)
+        {
+                write(1,output_buffer,buffer_index);
+                buffer_index = 0;
+        }
+}
 int _printf(const char *format, ...)
 {
 	va_list args;
