@@ -13,4 +13,5 @@ int print_hex_upper(unsigned int n);
 int print_hex_lower(unsigned int n);
 void flash_buffer(void);
 int print_S(char *str);
+int print_pointer(void *ptr);
 #endif

@@ -62,6 +62,8 @@ int _printf(const char *format, ...)
                                 count += print_hex_upper(va_arg(args, unsigned int));
 			 else if (*format == 'S')
                                 count += print_S(va_arg(args, char *));
+			   else if (*format == 'p')
+                                count += print_pointer(va_arg(args, void *));
 			else
 			{
 				count += _putchar('%');
