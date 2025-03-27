@@ -9,32 +9,46 @@ int print_pointer(void *ptr)
     int count = 0;
     unsigned long int address;
 
-
     if (ptr == NULL)
-    {
         return (print_string("(nil)"));
-    }
 
+    /* Cast the pointer to an unsigned long int to get its address */
     address = (unsigned long int)ptr;
+
+    /* Print the "0x" prefix */
     count += _putchar('0');
     count += _putchar('x');
-    count += print_hex_lower(address);
+
+    /* Print the address in lowercase hexadecimal */
+    count += print_hex_long(address);
+
     return (count);
 }
 
-/**
- * print_hex_lower - Helper function to print a number in hexadecimal format
- * @num: The number to print
- * Return: Number of characters printed
- */
-int print_hex_lower(unsigned long int num)
+int print_hex_long(unsigned long int n)
 {
     int count = 0;
-    char hex_chars[] = "0123456789abcdef";
+    int started = 0;
+    int i;
+    unsigned long int temp;
+    char hex_digits[] = "0123456789abcdef";
 
-    if (num / 16)
-        count += print_hex_lower(num / 16);  // Recursively break down the number
-    count += _putchar(hex_chars[num % 16]);  // Print the current hex digit
+    /* For a value of 0, just print '0' */
+    if (n == 0)
+        return (_putchar('0'));
+
+    /* Calculate how many hex digits we need (up to 16 for 64-bit) */
+    for (i = 15; i >= 0; i--)
+    {
+        temp = (n >> (i * 4)) & 0xF;
+
+        /* Skip leading zeros */
+        if (temp == 0 && !started)
+            continue;
+
+        started = 1;
+        count += _putchar(hex_digits[temp]);
+    }
 
     return (count);
 }
