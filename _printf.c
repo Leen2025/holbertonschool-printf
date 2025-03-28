@@ -35,7 +35,7 @@ int handle_flags(const char **format, va_list args)
     int count = 0;
     int has_plus = 0, has_space = 0, has_hash = 0;
 
-    // Check for flags
+    
     while (**format == '+' || **format == ' ' || **format == '#')
     {
         if (**format == '+')
@@ -47,7 +47,7 @@ int handle_flags(const char **format, va_list args)
         (*format)++;
     }
 
-    // Handle conversion based on flags
+    
     if (**format == 'd' || **format == 'i')
     {
         int num = va_arg(args, int);
@@ -101,10 +101,10 @@ int _printf(const char *format, ...)
             if (*format == '\0')
                 return (-1);
             
-            // Handle flags and format specifiers
+            
             count += handle_flags(&format, args);
             
-            // Handle other format specifiers
+            
             if (*format == 'c')
                 count += _putchar(va_arg(args, int));
             else if (*format == 's')
