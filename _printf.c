@@ -27,9 +27,10 @@ void flash_buffer(void)
 
 int _printf(const char *format, ...)
 {
+    va_list args;
     int count = 0;
     buffer_index = 0;
-    va_list args;
+   
 
     if (!format || (format[0] == '%' && format[1] == '\0'))
         return (-1);
