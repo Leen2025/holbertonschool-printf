@@ -29,7 +29,7 @@ int _putchar(char c)
 }
 
 /**
- * flash_buffer - Flushes the buffer to the output.
+ * flash_buffer - Flushes
  */
 void flash_buffer(void)
 {
@@ -122,14 +122,14 @@ int _printf(const char *format, ...)
                 count += print_hex_upper(num);
             }
             else if (*format == 'S')
-                count += print_S(va_arg(args, char *));  // Define print_S function
+                count += print_S(va_arg(args, char *)); 
             else if (*format == 'p')
-                count += print_pointer(va_arg(args, void *));  // Define print_pointer function
+                count += print_pointer(va_arg(args, void *));  
             else if (*format == 'l')
             {
                 if (*(format + 1) == 'd' || *(format + 1) == 'i')
                 {
-                    count += print_long_int(va_arg(args, long int));  // Define print_long_int function
+                    count += print_long_int(va_arg(args, long int)); 
                     format++;
                 }
                 else
