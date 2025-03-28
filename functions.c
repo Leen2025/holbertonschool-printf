@@ -41,3 +41,43 @@ int print_number(int n)
 	count += _putchar(num % 10 + '0');
 	return (count);
 }
+int print_long_int(long int num)
+{
+    int count = 0;
+    char buffer[20];  
+    int i = 0;
+    int is_negative = 0;
+
+    if (num == 0)
+    {
+        _putchar('0');
+        return (1);
+    }
+
+    if (num < 0)
+    {
+        is_negative = 1;
+        num = -num;
+    }
+
+    while (num > 0)
+    {
+        buffer[i++] = (num % 10) + '0'; 
+        num = num / 10;
+    }
+
+    if (is_negative)
+    {
+        _putchar('-');
+        count++;
+    }
+
+   
+    while (i-- > 0)
+    {
+        _putchar(buffer[i]);
+        count++;
+    }
+
+    return (count);
+}
