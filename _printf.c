@@ -1,7 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
-#include <limits.h>  // For LONG_MIN, LONG_MAX, etc.
+#include <limits.h> 
 
 /**
  * _putchar - Writes a character to the output buffer.
@@ -56,81 +56,81 @@ int _printf(const char *format, ...)
             if (*format == '\0')
                 return -1;
 
-            if (*format == 'l')  // Handling 'l' (long) modifier
+            if (*format == 'l')  
             {
-                if (*(format + 1) == 'd' || *(format + 1) == 'i')  // %ld or %li
+                if (*(format + 1) == 'd' || *(format + 1) == 'i') 
                 {
-                    count += print_long_int(va_arg(args, long int));  // Implement print_long_int
+                    count += print_long_int(va_arg(args, long int)); 
                     format++;
                 }
-                else if (*(format + 1) == 'u')  // %lu
+                else if (*(format + 1) == 'u')  
                 {
-                    count += print_unsigned_long(va_arg(args, unsigned long int));  // Implement print_unsigned_long
+                    count += print_unsigned_long(va_arg(args, unsigned long int)); 
                     format++;
                 }
-                else if (*(format + 1) == 'o')  // %lo
+                else if (*(format + 1) == 'o')  
                 {
-                    count += print_octal_long(va_arg(args, unsigned long int));  // Implement print_octal_long
+                    count += print_octal_long(va_arg(args, unsigned long int)); 
                     format++;
                 }
-                else if (*(format + 1) == 'x')  // %lx
+                else if (*(format + 1) == 'x') 
                 {
-                    count += print_hex_lower_long(va_arg(args, unsigned long int));  // Implement print_hex_lower_long
+                    count += print_hex_lower_long(va_arg(args, unsigned long int)); 
                     format++;
                 }
-                else if (*(format + 1) == 'X')  // %lX
+                else if (*(format + 1) == 'X')
                 {
-                    count += print_hex_upper_long(va_arg(args, unsigned long int));  // Implement print_hex_upper_long
+                    count += print_hex_upper_long(va_arg(args, unsigned long int));  
                     format++;
                 }
-                else  // Invalid format after %l
+                else 
                 {
                     _putchar('%');
                     _putchar('l');
                     count += 2;
                 }
             }
-            else if (*format == 'h')  // Handling 'h' (short) modifier
+            else if (*format == 'h') 
             {
-                if (*(format + 1) == 'd' || *(format + 1) == 'i')  // %hd or %hi
+                if (*(format + 1) == 'd' || *(format + 1) == 'i') 
                 {
-                    count += print_short_int(va_arg(args, int));  // Implement print_short_int
+                    count += print_short_int(va_arg(args, int)); 
                     format++;
                 }
-                else if (*(format + 1) == 'u')  // %hu
+                else if (*(format + 1) == 'u')  
                 {
-                    count += print_unsigned_short(va_arg(args, unsigned int));  // Implement print_unsigned_short
+                    count += print_unsigned_short(va_arg(args, unsigned int));
                     format++;
                 }
-                else if (*(format + 1) == 'o')  // %ho
+                else if (*(format + 1) == 'o')  
                 {
-                    count += print_octal_short(va_arg(args, unsigned int));  // Implement print_octal_short
+                    count += print_octal_short(va_arg(args, unsigned int)); 
                     format++;
                 }
-                else if (*(format + 1) == 'x')  // %hx
+                else if (*(format + 1) == 'x')  
                 {
-                    count += print_hex_lower_short(va_arg(args, unsigned int));  // Implement print_hex_lower_short
+                    count += print_hex_lower_short(va_arg(args, unsigned int)); 
                     format++;
                 }
-                else if (*(format + 1) == 'X')  // %hX
+                else if (*(format + 1) == 'X')  
                 {
-                    count += print_hex_upper_short(va_arg(args, unsigned int));  // Implement print_hex_upper_short
+                    count += print_hex_upper_short(va_arg(args, unsigned int));  
                     format++;
                 }
-                else  // Invalid format after %h
+                else 
                 {
                     _putchar('%');
                     _putchar('h');
                     count += 2;
                 }
             }
-            else if (*format == 'd' || *format == 'i')  // Regular int
+            else if (*format == 'd' || *format == 'i')  
             {
-                count += print_number(va_arg(args, int));  // Implement print_number for normal ints
+                count += print_number(va_arg(args, int));  
             }
             else
             {
-                // Handle other cases like %u, %x, %X, etc.
+               
             }
         }
         else
