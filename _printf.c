@@ -85,13 +85,6 @@ int _printf(const char *format, ...)
 			{
 				unsigned int num = va_arg(args, unsigned int);
 				if (hash_flag && num != 0)
-						count += _putchar('0');
-				count += print_octal(num);
-			}
-			else if (*format == 'x')
-			{
-				unsigned int num = va_arg(args, unsigned int);
-				if (hash_flag && num != 0)
 				{
 					count += _putchar('0');
 					count += _putchar('x');
@@ -130,24 +123,18 @@ int _printf(const char *format, ...)
             {
                 _putchar('%');
                 _putchar(*format);
-                count += 2;
+               count += 2;
             }
         }
 
 			else
 			{
-				count += _putchar('%');
-				if (plus_flag)
-                    count += _putchar('+');
-                if (space_flag)
-                    count += _putchar(' ');
-                if (hash_flag)
-                    count += _putchar('#');
+		
 				count += _putchar(*format);
 			}
-		}
+		
 		else
-			count += _putchar(*format);
+	
 		format++;
 	}
 flash_buffer();
