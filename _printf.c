@@ -1,17 +1,18 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
+#include <limits.h>
 
 /**
-* _printf - Produces output according to a format
-* @format: Format string containing format specifiers
-* Return: Number of characters printed
+* _putchar - Writes a character to stdout
+* @c: Character to print
+* Return: 1 on success
 */
-int buffer_index = 0;
-char output_buffer[1024];
-
 int _putchar(char c)
 {
+    static int buffer_index = 0;
+    static char output_buffer[1024];
+
     output_buffer[buffer_index++] = c;
     if (buffer_index == 1024)
     {
@@ -21,8 +22,14 @@ int _putchar(char c)
     return (1);
 }
 
+/**
+* flash_buffer - Flushes the buffer content to stdout
+*/
 void flash_buffer(void)
 {
+    static int buffer_index = 0;
+    static char output_buffer[1024];
+
     if (buffer_index > 0)
     {
         write(1, output_buffer, buffer_index);
@@ -30,6 +37,50 @@ void flash_buffer(void)
     }
 }
 
+/**
+* print_string - Prints a string
+* @str: String to print
+* Return: Number of characters printed
+*/
+int print_string(char *str)
+{
+    int count = 0;
+    if (!str)
+        str = "(null)";
+    while (*str)
+        count += _putchar(*str++);
+    return (count);
+}
+
+/**
+* print_number - Prints an integer
+* @n: Integer to print
+* Return: Number of characters printed
+*/
+int print_number(int n)
+{
+    int count = 0;
+    unsigned int num;
+
+    if (n < 0)
+    {
+        count += _putchar('-');
+        num = -n;
+    }
+    else
+        num = n;
+    if (num / 10)
+        count += print_number(num / 10);
+    count += _putchar(num % 10 + '0');
+    return (count);
+}
+
+/**
+* handle_flags - Handles flag processing for the specifiers
+* @format: Format string to process flags
+* @args: Argument list
+* Return: Number of characters printed
+*/
 int handle_flags(const char **format, va_list args)
 {
     int count = 0;
@@ -82,6 +133,11 @@ int handle_flags(const char **format, va_list args)
     return count;
 }
 
+/**
+* _printf - Produces output according to a format
+* @format: Format string containing format specifiers
+* Return: Number of characters printed
+*/
 int _printf(const char *format, ...)
 {
     va_list args;
@@ -100,10 +156,10 @@ int _printf(const char *format, ...)
             format++;
             if (*format == '\0')
                 return (-1);
-            
+
             
             count += handle_flags(&format, args);
-            
+
             
             if (*format == 'c')
                 count += _putchar(va_arg(args, int));
