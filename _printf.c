@@ -112,6 +112,28 @@ int _printf(const char *format, ...)
                                 count += print_S(va_arg(args, char *));
 			   else if (*format == 'p')
                                 count += print_pointer(va_arg(args, void *));
+			   else if (*format == 'l') 
+            {
+                if (*(format + 1) == 'd' || *(format + 1) == 'i') 
+                {
+                    count += print_long_int(va_arg(args, long int)); 
+                    format++;  
+                }
+                else
+                {
+                    _putchar('%');
+                    _putchar('l');
+                    count += 2;
+                }
+            }
+            else
+            {
+                _putchar('%');
+                _putchar(*format);
+                count += 2;
+            }
+        }
+
 			else
 			{
 				count += _putchar('%');

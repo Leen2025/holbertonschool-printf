@@ -16,4 +16,5 @@ int print_S(char *str);
 int print_pointer(void *ptr);
 int print_hex_long(unsigned long int n);
 int handle_flags(const char **format, va_list args);
+int print_long_int(long int num);
 #endif
