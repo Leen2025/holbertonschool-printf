@@ -47,7 +47,7 @@ typedef struct fmt_handler
 int write_num(fmt_info_t *fmt, int ind, char buffer[], int length, char padd, char extra_c);
 
 /* Main printf function */
-int my_printf(const char *format, ...);
+int _printf(const char *format, ...);
 
 /* Buffer handling functions */
 void init_buffer(char buffer[]);
