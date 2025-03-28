@@ -10,7 +10,7 @@ void init_buffer(char buffer[])
 {
 	int i;
 
-	for (i = 0; i < BUFFER_SIZE; i++)
+	for (i = 0; i < 1024; i++)
 		buffer[i] = 0;
 }
 
