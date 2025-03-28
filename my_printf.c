@@ -6,7 +6,7 @@
  *
  * Return: Number of characters printed (excluding null byte)
  */
-int my_printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
 	int i, printed_chars = 0;
 	int buf_idx = 0;
