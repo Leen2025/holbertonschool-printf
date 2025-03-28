@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	int buf_idx = 0;
 	int printed;
 	va_list args;
-	char buffer[BUFFER_SIZE];
+	char buffer[1024];
 	fmt_info_t fmt = {0};
 
 	if (format == NULL)
@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 		if (format[i] != '%')
 		{
 			buffer[buf_idx++] = format[i];
-			if (buf_idx == BUFFER_SIZE)
+			if (buf_idx == 1024)
 				flush_buffer(buffer, &buf_idx);
 			printed_chars++;
 		}
