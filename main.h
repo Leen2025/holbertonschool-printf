@@ -86,7 +86,7 @@ int handle_hex(fmt_info_t *fmt, va_list args, char map_to[], char buffer[], int 
 
 /* Custom handlers */
 int handle_pointer(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx);
-int handle_non_printable(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx);
+int handle_nonprint(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx);
 int handle_reverse(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx);
 int handle_rot13(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx);
 
