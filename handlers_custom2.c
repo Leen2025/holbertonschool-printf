@@ -9,41 +9,44 @@
  */
 int handle_rot13(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 {
-	char *str, x, in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	unsigned int i, j, count = 0, str_len = 0;
-	int width;
+	char *str, x, padd = ' ';
+	int i, j, count = 0, len = 0, pad_len;
+	const char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	const char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	flush_buffer(buffer, buf_idx);
 	str = va_arg(args, char *);
-	if (!str)
-		str = "(AHYY)";
-
-	while (str[str_len])
-		str_len++;
-
-	width = fmt->width;
-	if (width > (int)str_len && !(fmt->flags & F_MINUS))
-		for (j = 0; j < (unsigned int)(width - str_len); j++)
-			write(1, (fmt->flags & F_ZERO) ? "0" : " ", 1);
+	str = str ? str : "(AHYY)";
+	for (len = 0; str[len]; len++)
+		;
+	if (fmt->width > len && !(fmt->flags & F_MINUS))
+	{
+		padd = (fmt->flags & F_ZERO) ? '0' : ' ';
+		for (i = 0; i < fmt->width - len; i++)
+			count += write(1, &padd, 1);
+	}
 
 	for (i = 0; str[i]; i++)
 	{
-		x = str[i];
 		for (j = 0; in[j]; j++)
-			if (in[j] == str[i])
+		{
+			if (str[i] == in[j])
 			{
 				x = out[j];
+				count += write(1, &x, 1);
 				break;
 			}
-		write(1, &x, 1);
-		count++;
+		}
+		if (!in[j])
+			count += write(1, &str[i], 1);
 	}
 
-	if (width > (int)count && (fmt->flags & F_MINUS))
-		for (j = 0; j < (unsigned int)(width - count); j++)
-			write(1, " ", 1);
+	if (fmt->width > count && (fmt->flags & F_MINUS))
+	{
+		pad_len = fmt->width - count;
+		for (i = 0; i < pad_len; i++)
+			count += write(1, &padd, 1);
+	}
 
-	return (width > count ? width : (int)count);
+	return (count);
 }
-
