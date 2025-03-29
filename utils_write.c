@@ -201,9 +201,9 @@ int write_pointer(fmt_info_t *fmt, char buffer[], int ind, int length, int *buf_
 				buffer[--padd_start] = extra_c;
 			buffer[1] = '0';
 			buffer[2] = 'x';
-			return (write(1, &buffer[padd_start], i - padd_start) +write(1, &buffer[ind], length - (1 - padd_start) - 2));
+		return (write(1, &buffer[padd_start], i - padd_start) + write(1, &buffer[ind], length - (1 - padd_start) - 2));
 		}
-        }
+	}
 	buffer[--ind] = 'x';
 	buffer[--ind] = '0';
 	if (extra_c)
