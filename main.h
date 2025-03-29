@@ -79,5 +79,9 @@ int append_hexa_code(char c, char buffer[], int i);
 int is_digit(char c);
 long int convert_size_number(long int num, int size);
 long int convert_size_unsigned(unsigned long int num, int size);
+int flush_buffer(char buffer[], int *buf_idx);
+unsigned int convert_size_unsigned(unsigned int num, int size);
+int write_unsigned(fmt_info_t *fmt, int index, char buffer[], int *buf_idx);
+
 #endif /* MAIN_H */
 
