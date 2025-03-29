@@ -56,11 +56,7 @@ int _printf(const char *format, ...)
 			if (*format == '\0')
 				return (-1);
 
-			if (*format == 'l' || *format == 'h')
-			{
-				count += handle_length_modifier(format, args, *(format + 1));
-			}
-			else if (*format == 'c')
+			if (*format == 'c')
 				count += _putchar(va_arg(args, int));
 			else if (*format == 's')
 				count += print_string(va_arg(args, char *));
