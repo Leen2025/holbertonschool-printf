@@ -8,6 +8,9 @@
  */
 int _putchar(char c)
 {
+	int buffer_index = 0;
+	char output_buffer[1024];
+
 	output_buffer[buffer_index++] = c;
 	if (buffer_index == 1024)
 	{
