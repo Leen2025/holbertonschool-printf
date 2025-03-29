@@ -16,7 +16,6 @@ if (format == NULL)
 return (-1);
 va_start(args, format);
 init_buffer(buffer);
-/* Initialize format info structure */
 fmt.flags = 0;
 fmt.width = 0;
 fmt.precision = -1;
