@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * handle_unsigned - Handle unsigned integer format specifier
  * @fmt: Pointer to format information structure
@@ -7,7 +8,8 @@
  * @buf_idx: Pointer to buffer index
  * Return: Number of characters printed
  */
-int handle_unsigned(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
+int handle_unsigned(fmt_info_t *fmt, va_list args,
+		char buffer[], int *buf_idx)
 {
 	int i = BUFFER_SIZE - 2;
 	unsigned long int num = va_arg(args, unsigned long int);
@@ -27,6 +29,7 @@ int handle_unsigned(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 	i++;
 	return (write_unsigned(fmt, i, buffer, buf_idx));
 }
+
 /**
  * handle_octal - Handle octal format specifier
  * @fmt: Pointer to format information structure
@@ -35,7 +38,8 @@ int handle_unsigned(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
  * @buf_idx: Pointer to buffer index
  * Return: Number of characters printed
  */
-int handle_octal(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
+int handle_octal(fmt_info_t *fmt, va_list args,
+		char buffer[], int *buf_idx)
 {
 	int i = BUFFER_SIZE - 2;
 	unsigned long int num = va_arg(args, unsigned long int);
@@ -60,6 +64,7 @@ int handle_octal(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 	i++;
 	return (write_unsigned(fmt, i, buffer, buf_idx));
 }
+
 /**
  * handle_hex_lower - Handle lowercase hexadecimal format specifier
  * @fmt: Pointer to format information structure
@@ -68,12 +73,13 @@ int handle_octal(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
  * @buf_idx: Pointer to buffer index
  * Return: Number of characters printed
  */
-int handle_hex_lower(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
+int handle_hex_lower(fmt_info_t *fmt, va_list args,
+		char buffer[], int *buf_idx)
 {
 	flush_buffer(buffer, buf_idx);
-
 	return (handle_hex(fmt, args, "0123456789abcdef", buffer, buf_idx));
 }
+
 /**
  * handle_hex_upper - Handle uppercase hexadecimal format specifier
  * @fmt: Pointer to format information structure
@@ -82,14 +88,15 @@ int handle_hex_lower(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
  * @buf_idx: Pointer to buffer index
  * Return: Number of characters printed
  */
-int handle_hex_upper(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
+int handle_hex_upper(fmt_info_t *fmt, va_list args,
+		char buffer[], int *buf_idx)
 {
 	flush_buffer(buffer, buf_idx);
-
 	return (handle_hex(fmt, args, "0123456789ABCDEF", buffer, buf_idx));
 }
+
 /**
- * handle_hex - Handle hexadecimal format specifier (helper function)
+ * handle_hex - Handle hexadecimal format specifier
  * @fmt: Pointer to format information structure
  * @args: Variable arguments list
  * @map_to: Character mapping for hex digits
@@ -97,7 +104,8 @@ int handle_hex_upper(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
  * @buf_idx: Pointer to buffer index
  * Return: Number of characters printed
  */
-int handle_hex(fmt_info_t *fmt, va_list args, char map_to[], char buffer[], int *buf_idx)
+int handle_hex(fmt_info_t *fmt, va_list args, char map_to[],
+		char buffer[], int *buf_idx)
 {
 	int i = BUFFER_SIZE - 2;
 	unsigned long int num = va_arg(args, unsigned long int);

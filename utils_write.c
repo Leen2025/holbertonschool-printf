@@ -43,7 +43,8 @@ int write_char(fmt_info_t *fmt, char c, char buffer[], int *buf_idx)
  * @buf_idx: Pointer to buffer index
  * Return: Number of chars printed
  */
-int write_number(fmt_info_t *fmt, int is_negative, int ind, char buffer[], int *buf_idx)
+int write_number(fmt_info_t *fmt, int is_negative, int ind,
+		char buffer[], int *buf_idx)
 {
 	int length = BUFFER_SIZE - ind - 1;
 	char padd = ' ', extra_ch = 0;
@@ -70,10 +71,12 @@ int write_number(fmt_info_t *fmt, int is_negative, int ind, char buffer[], int *
  * @extra_c: Extra char
  * Return: Number of printed chars
  */
-int write_num(fmt_info_t *fmt, int ind, char buffer[], int length, char padd, char extra_c)
-{
-	int i, padd_start = 1;
-	if (fmt->precision == 0 && ind == BUFFER_SIZE - 2 && buffer[ind] == '0' && fmt->width == 0)
+int write_num(fmt_info_t *fmt, int ind, char buffer[],
+		int length, char padd, char extra_c){
+int i, padd_start = 1;
+
+	if (fmt->precision == 0 && ind == BUFFER_SIZE - 2 &&
+			buffer[ind] == '0' && fmt->width == 0)
 		return (0);
 	if (fmt->precision == 0 && ind == BUFFER_SIZE - 2 && buffer[ind] == '0')
 		buffer[ind] = padd = ' ';
@@ -104,8 +107,8 @@ int write_num(fmt_info_t *fmt, int ind, char buffer[], int length, char padd, ch
 		{
 			if (extra_c)
 				buffer[--padd_start] = extra_c;
-					return (write(1, &buffer[padd_start], i - padd_start) +
-							write(1, &buffer[ind], length - (1 - padd_start)));
+	return (write(1, &buffer[padd_start], i - padd_start) +
+			write(1, &buffer[ind], length - (1 - padd_start)));
 		}
 	}
 	if (extra_c)
@@ -120,7 +123,8 @@ int write_num(fmt_info_t *fmt, int ind, char buffer[], int length, char padd, ch
  * @buf_idx: Pointer to buffer index
  * Return: Number of chars printed
  */
-int write_unsigned(fmt_info_t *fmt, int ind, char buffer[], int *buf_idx)
+int write_unsigned(fmt_info_t *fmt, int ind,
+		char buffer[], int *buf_idx)
 {
 	int length = BUFFER_SIZE - ind - 1, i = 0;
 	char padd = ' ';
@@ -165,11 +169,11 @@ int write_unsigned(fmt_info_t *fmt, int ind, char buffer[], int *buf_idx)
  * @buf_idx: Pointer to buffer index
  * Return: Number of written chars
  */
-int write_pointer(fmt_info_t *fmt, char buffer[], int ind, int length, int *buf_idx)
+int write_pointer(fmt_info_t *fmt, char buffer[],
+		int ind, int length, int *buf_idx)
 {
 	int i;
 	char padd = ' ';
-	char extra_c = 0;
 	int padd_start = 1;
 
 	(void)buf_idx;
@@ -179,34 +183,30 @@ int write_pointer(fmt_info_t *fmt, char buffer[], int ind, int length, int *buf_
 		for (i = 3; i < fmt->width - length + 3; i++)
 			buffer[i] = padd;
 		buffer[i] = '\0';
-		if (fmt->flags & F_MINUS && padd == ' ')
+
+		if (fmt->flags & F_MINUS)
 		{
 			buffer[--ind] = 'x';
 			buffer[--ind] = '0';
-			if (extra_c)
-				buffer[--ind] = extra_c;
-			return (write(1, &buffer[ind], length) + write(1, &buffer[3], i - 3));
+			return (write(1, &buffer[ind], length) +
+					write(1, &buffer[3], i - 3));
 		}
 		else if (!(fmt->flags & F_MINUS) && padd == ' ')
 		{
 			buffer[--ind] = 'x';
 			buffer[--ind] = '0';
-			if (extra_c)
-				buffer[--ind] = extra_c;
-			return (write(1, &buffer[3], i - 3) + write(1, &buffer[ind], length));
+			return (write(1, &buffer[3], i - 3) +
+					write(1, &buffer[ind], length));
 		}
 		else if (!(fmt->flags & F_MINUS) && padd == '0')
 		{
-			if (extra_c)
-				buffer[--padd_start] = extra_c;
 			buffer[1] = '0';
 			buffer[2] = 'x';
-		return (write(1, &buffer[padd_start], i - padd_start) + write(1, &buffer[ind], length - (1 - padd_start) - 2));
+			return (write(1, &buffer[1], i - 1) +
+					write(1, &buffer[ind], length - 2));
 		}
 	}
 	buffer[--ind] = 'x';
 	buffer[--ind] = '0';
-	if (extra_c)
-		buffer[--ind] = extra_c;
 	return (write(1, &buffer[ind], BUFFER_SIZE - ind - 1));
 }
