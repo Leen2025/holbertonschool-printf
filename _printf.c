@@ -25,6 +25,9 @@ int _putchar(char c)
  */
 void flash_buffer(void)
 {
+	int buffer_index = 0;
+	char output_buffer[1024];
+
 	if (buffer_index > 0)
 	{
 		write(1, output_buffer, buffer_index);
@@ -39,13 +42,12 @@ void flash_buffer(void)
  */
 int _printf(const char *format, ...)
 {
+	int buffer_index = 0;
 	va_list args;
 	int count = 0;
 
-	buffer_index = 0;
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-
 	va_start(args, format);
 	while (*format)
 	{
@@ -54,7 +56,6 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == '\0')
 				return (-1);
-
 			if (*format == 'l' || *format == 'h')
 			{
 				count += handle_length_modifier(format, args, *(format + 1));
