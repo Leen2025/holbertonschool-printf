@@ -8,7 +8,8 @@
  *
  * Return: Number of characters printed
  */
-int handle_unsigned(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
+int handle_unsigned(fmt_info_t *fmt, va_list args,
+char buffer[], int *buf_idx)
 {
 int i = BUFFER_SIZE - 2;
 unsigned long int num = va_arg(args, unsigned long int);
@@ -35,7 +36,8 @@ return (write_unsigned(fmt, i, buffer, buf_idx));
  *
  * Return: Number of characters printed
  */
-int handle_octal(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
+int handle_octal(fmt_info_t *fmt, va_list args,
+char buffer[], int *buf_idx)
 {
 int i = BUFFER_SIZE - 2;
 unsigned long int num = va_arg(args, unsigned long int);
@@ -65,7 +67,8 @@ return (write_unsigned(fmt, i, buffer, buf_idx));
  *
  * Return: Number of characters printed
  */
-int handle_hex_lower(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
+int handle_hex_lower(fmt_info_t *fmt, va_list args,
+char buffer[], int *buf_idx)
 {
 /* Flush buffer before handling hex */
 flush_buffer(buffer, buf_idx);
@@ -80,7 +83,8 @@ return (handle_hex(fmt, args, "0123456789abcdef", buffer, buf_idx));
  *
  * Return: Number of characters printed
  */
-int handle_hex_upper(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
+int handle_hex_upper(fmt_info_t *fmt, va_list args,
+char buffer[], int *buf_idx)
 {
 /* Flush buffer before handling hex */
 flush_buffer(buffer, buf_idx);
@@ -97,7 +101,8 @@ return (handle_hex(fmt, args, "0123456789ABCDEF", buffer, buf_idx));
  *
  * Return: Number of characters printed
  */
-int handle_hex(fmt_info_t *fmt, va_list args, char map_to[], char buffer[], int *buf_idx)
+int handle_hex(fmt_info_t *fmt, va_list args, char map_to[],
+char buffer[], int *buf_idx)
 {
 int i = BUFFER_SIZE - 2;
 unsigned long int num = va_arg(args, unsigned long int);
@@ -120,5 +125,3 @@ buffer[i--] = '0';
 i++;
 return (write_unsigned(fmt, i, buffer, buf_idx));
 }
-            
-                           
