@@ -12,7 +12,6 @@ int handle_non_printable(fmt_info_t *fmt, va_list args, char buffer[], int *buf_
 	iint i = 0, offset = 0;
 	char *str = va_arg(args, char *);
 	(void)fmt;
-
 	flush_buffer(buffer, buf_idx);
 	if (str == NULL)
 		return (write(1, "(null)", 6));
@@ -37,46 +36,43 @@ int handle_non_printable(fmt_info_t *fmt, va_list args, char buffer[], int *buf_
  */
 int handle_reverse(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 {
-        char *str;
-        int i, count = 0;
-        int j, k;
+	char *str;
+	int i, count = 0;
+	int j, k;
 
-        flush_buffer(buffer, buf_idx);
-        str = va_arg(args, char *);
-        if (str == NULL)
-                str = ")Null(";
-        for (i = 0; str[i]; i++)
-               ;
-        if (fmt->width > i && !(fmt->flags & F_MINUS))
-        {
-                char padd = (fmt->flags & F_ZERO) ? '0' : ' ';
-                int padding = fmt->width - i;
+	flush_buffer(buffer, buf_idx);
+	str = va_arg(args, char *);
+	if (str == NULL)
+		str = ")Null(";
+	for (i = 0; str[i]; i++)
+	if (fmt->width > i && !(fmt->flags & F_MINUS))
+	{
+		char padd = (fmt->flags & F_ZERO) ? '0' : ' ';
+		int padding = fmt->width - i;
 
-                for (j = 0; j < padding; j++)
-                        write(1, &padd, 1);
-        }
+		for (j = 0; j < padding; j++)
+			write(1, &padd, 1);
+	}
+	for (i = i - 1; i >= 0; i--)
+	{
+		char z = str[i];
+		write(1, &z, 1);
+		count++;
+	}
 
-        for (i = i - 1; i >= 0; i--)
-        {
-                char z = str[i];
-                write(1, &z, 1);
-                count++;
-        }
+	if (fmt->width > count && (fmt->flags & F_MINUS))
+	{
+		char padd = ' ';
+		int padding = fmt->width - count;
 
-        if (fmt->width > count && (fmt->flags & F_MINUS))
-        {
-                char padd = ' ';
-                int padding = fmt->width - count;
+		for (k = 0; k < padding; k++)
+			write(1, &padd, 1);
 
-                for (k = 0; k < padding; k++)
-                        write(1, &padd, 1);
+		return (fmt->width);
+	}
 
-                return (fmt->width);
-        }
-
-        return (count);
+	return (count);
 }
-
 /**
  * handle_rot13 - Handle ROT13 string format specifier
  * @fmt: Pointer to format information structure
@@ -95,25 +91,19 @@ int handle_rot13(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 	int j, k;
 	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-
 	flush_buffer(buffer, buf_idx);
-
 	str = va_arg(args, char *);
 	if (str == NULL)
 		str = "(AHYY)";
-
 	for (i = 0; str[i]; i++)
 		str_len++;
-
 	if (fmt->width > str_len && !(fmt->flags & F_MINUS))
 	{
 		char padd = (fmt->flags & F_ZERO) ? '0' : ' ';
 		int padding = fmt->width - str_len;
-
-		for (k = 0; k < padding; k++)
+		for (k = 0; k < padding ; k++)
 			write(1, &padd, 1);
 	}
-
 	for (i = 0; str[i]; i++)
 	{
 		for (j = 0; in[j]; j++)
@@ -133,18 +123,14 @@ int handle_rot13(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 			count++;
 		}
 	}
-
 	if (fmt->width > count && (fmt->flags & F_MINUS))
 	{
 		char padd = ' ';
 		int padding = fmt->width - count;
 		int k;
-
-		for (k = 0; k < padding; k++)
+		for (k = 0 ; k < padding ; k++)
 			write(1, &padd, 1);
-
 		return (fmt->width);
 	}
-
 	return (count);
 }
