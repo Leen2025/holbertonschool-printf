@@ -22,7 +22,7 @@ int handle_format(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 		{'x', handle_hex_lower},
 		{'X', handle_hex_upper},
 		{'p', handle_pointer},
-		{'S', handle_non_printable},
+		{'S', handle_nonprint},
 		{'r', handle_reverse},
 		{'R', handle_rot13},
 		{0, NULL}
