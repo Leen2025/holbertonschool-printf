@@ -174,7 +174,6 @@ int write_pointer(fmt_info_t *fmt, char buffer[],
 {
 	int i;
 	char padd = ' ';
-	int padd_start = 1;
 
 	(void)buf_idx;
 
