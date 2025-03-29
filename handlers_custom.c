@@ -9,7 +9,7 @@
  */
 int handle_non_printable(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 {
-	iint i = 0, offset = 0;
+	int i = 0, offset = 0;
 	char *str = va_arg(args, char *);
 	(void)fmt;
 	flush_buffer(buffer, buf_idx);
