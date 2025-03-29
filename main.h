@@ -5,13 +5,17 @@
 #include <stdio.h>
 #include <unistd.h>
 
+/* Buffer size for output */
 #define BUFFER_SIZE 1024
 
-#define F_MINUS 1  
-#define F_PLUS 2   
-#define F_ZERO 4   
-#define F_HASH 8   
-#define F_SPACE 16 
+/* Flag macros */
+#define F_MINUS 1  /* Left-align */
+#define F_PLUS 2   /* Show sign */
+#define F_ZERO 4   /* Zero padding */
+#define F_HASH 8   /* Alternate form */
+#define F_SPACE 16 /* Space if no sign */
+
+/* Size macros */
 #define S_LONG 2
 #define S_SHORT 1
 
@@ -47,7 +51,7 @@ typedef struct fmt_handler
 int write_num(fmt_info_t *fmt, int ind, char buffer[], int length, char padd, char extra_c);
 
 /* Main printf function */
-int _printf(const char *format, ...);
+int my_printf(const char *format, ...);
 
 /* Buffer handling functions */
 void init_buffer(char buffer[]);

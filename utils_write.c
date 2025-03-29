@@ -1,3 +1,10 @@
+/**
+ * utils_write.c - Write utility functions
+ *
+ * This file contains utility functions for writing formatted output
+ * used by the my_printf function.
+ */
+
 #include "main.h"
 
 /**

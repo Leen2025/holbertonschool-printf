@@ -1,3 +1,10 @@
+/**
+ * buffer_handler.c - Buffer management functions
+ *
+ * This file contains functions for managing the output buffer
+ * used by the my_printf function.
+ */
+
 #include "main.h"
 
 /**
@@ -10,7 +17,7 @@ void init_buffer(char buffer[])
 {
 	int i;
 
-	for (i = 0; i < 1024; i++)
+	for (i = 0; i < BUFFER_SIZE; i++)
 		buffer[i] = 0;
 }
 

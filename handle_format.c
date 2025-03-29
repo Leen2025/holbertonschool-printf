@@ -1,3 +1,10 @@
+/**
+ * handle_format.c - Format handler selector
+ *
+ * This file contains the function to select the appropriate
+ * handler for a format specifier.
+ */
+
 #include "main.h"
 
 /**
