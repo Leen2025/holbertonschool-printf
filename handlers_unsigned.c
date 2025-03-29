@@ -1,3 +1,10 @@
+/**
+ * handlers_unsigned.c - Unsigned numeric format handlers
+ *
+ * This file contains handler functions for unsigned numeric
+ * format specifiers (u, o, x, X).
+ */
+
 #include "main.h"
 
 /**
@@ -87,7 +94,7 @@ int handle_hex_lower(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 {
         /* Flush buffer before handling hex */
         flush_buffer(buffer, buf_idx);
-        
+
         return (handle_hex(fmt, args, "0123456789abcdef", buffer, buf_idx));
 }
 
@@ -104,7 +111,7 @@ int handle_hex_upper(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 {
         /* Flush buffer before handling hex */
         flush_buffer(buffer, buf_idx);
-        
+
         return (handle_hex(fmt, args, "0123456789ABCDEF", buffer, buf_idx));
 }
 

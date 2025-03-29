@@ -1,3 +1,10 @@
+/**
+ * handlers_custom.c - Custom format handlers
+ *
+ * This file contains handler functions for custom format
+ * specifiers (S, r, R).
+ */
+
 #include "main.h"
 
 /**
@@ -70,7 +77,7 @@ int handle_reverse(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
         {
                 char padd = (fmt->flags & F_ZERO) ? '0' : ' ';
                 int padding = fmt->width - i;
-                
+
                 for (j = 0; j < padding; j++)
                         write(1, &padd, 1);
         }
@@ -88,10 +95,10 @@ int handle_reverse(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
         {
                 char padd = ' ';
                 int padding = fmt->width - count;
-                
+
                 for (k = 0; k < padding; k++)
                         write(1, &padd, 1);
-                        
+
                 return (fmt->width);
         }
 
@@ -134,7 +141,7 @@ int handle_rot13(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
         {
                 char padd = (fmt->flags & F_ZERO) ? '0' : ' ';
                 int padding = fmt->width - str_len;
-                
+
                 for (k = 0; k < padding; k++)
                         write(1, &padd, 1);
         }
@@ -166,10 +173,10 @@ int handle_rot13(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
                 char padd = ' ';
                 int padding = fmt->width - count;
                 int k;
-                
+
                 for (k = 0; k < padding; k++)
                         write(1, &padd, 1);
-                        
+
                 return (fmt->width);
         }
 

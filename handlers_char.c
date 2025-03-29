@@ -1,3 +1,10 @@
+/**
+ * handlers_char.c - Character and string format handlers
+ *
+ * This file contains handler functions for character and string
+ * format specifiers (c, s, %).
+ */
+
 #include "main.h"
 
 /**
@@ -12,11 +19,11 @@
 int handle_char(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 {
         char c = va_arg(args, int);
-        
+
         /* Flush buffer before handling char with width formatting */
         if (fmt->width > 1)
                 flush_buffer(buffer, buf_idx);
-                
+
         return (write_char(fmt, c, buffer, buf_idx));
 }
 
@@ -84,16 +91,16 @@ int handle_percent(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
 {
         /* Flush buffer before handling percent sign */
         flush_buffer(buffer, buf_idx);
-        
+
         (void)fmt;
         (void)args;
-        
+
         /* Handle width formatting if specified */
         if (fmt->width > 1)
         {
                 int i;
                 char padd = (fmt->flags & F_ZERO) ? '0' : ' ';
-                
+
                 if (fmt->flags & F_MINUS)
                 {
                         write(1, "%", 1);
@@ -109,7 +116,7 @@ int handle_percent(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
                         return (fmt->width);
                 }
         }
-        
+
         return (write(1, "%", 1));
 }
 

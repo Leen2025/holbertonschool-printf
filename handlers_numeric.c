@@ -1,3 +1,10 @@
+/**
+ * handlers_numeric.c - Numeric format handlers
+ *
+ * This file contains handler functions for basic numeric
+ * format specifiers (d, i, b).
+ */
+
 #include "main.h"
 
 /**
@@ -70,12 +77,12 @@ int handle_binary(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
                 m /= 2;
                 a[i] = (n / m) % 2;
         }
-        
+
         /* Handle width formatting if specified */
         if (fmt->width > 0)
         {
                 int binary_len = 0;
-                
+
                 /* Calculate binary length */
                 for (i = 0, sum = 0; i < 32; i++)
                 {
@@ -83,21 +90,21 @@ int handle_binary(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
                         if (sum || i == 31)
                                 binary_len++;
                 }
-                
+
                 /* Apply padding if width is greater than binary length */
                 if (fmt->width > binary_len)
                 {
                         char padd = (fmt->flags & F_ZERO) ? '0' : ' ';
                         int padding = fmt->width - binary_len;
                         unsigned int j;
-                        
+
                         if (!(fmt->flags & F_MINUS))
                         {
                                 /* Right-aligned: padding first */
                                 for (j = 0; j < (unsigned int)padding; j++)
                                         write(1, &padd, 1);
                         }
-                        
+
                         /* Print binary number */
                         for (i = 0, sum = 0, count = 0; i < 32; i++)
                         {
@@ -109,18 +116,18 @@ int handle_binary(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
                                         count++;
                                 }
                         }
-                        
+
                         if (fmt->flags & F_MINUS)
                         {
                                 /* Left-aligned: padding after */
                                 for (j = 0; j < (unsigned int)padding; j++)
                                         write(1, &padd, 1);
                         }
-                        
+
                         return (fmt->width);
                 }
         }
-        
+
         /* No width formatting or width <= binary length */
         for (i = 0, sum = 0, count = 0; i < 32; i++)
         {
@@ -132,7 +139,7 @@ int handle_binary(fmt_info_t *fmt, va_list args, char buffer[], int *buf_idx)
                         count++;
                 }
         }
-        
+
         return (count);
 }
 
