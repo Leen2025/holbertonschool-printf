@@ -188,8 +188,9 @@ man ./man_3_printf
 -Report issues via the project reposit
 
 ## References & Related Commands
-
+```
 man 3 printf
+```
 
 ## Authors
 - Bader Al-Amri
