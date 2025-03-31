@@ -1,4 +1,4 @@
-$docContent = @"
+
 # C - Custom printf Implementation
 
 ## Project Overview
@@ -54,19 +54,19 @@ The `_printf` function is a custom-built implementation of the standard C `print
 
 ### Compilation Instructions
 The project is compiled on **Ubuntu 22.04** using `gcc` with the following flags:
-
+```sh
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o _printf
 
 main.h header file is included in all function implementations
 
 ## Running a Test File
 test file main.c compile and execute it as follows:
-
+```sh
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o _printf
 ./_printf
 
 ## Example Usage (main.c)
-
+```sh
 #include "main.h"
 
 int main(void)
@@ -85,26 +85,31 @@ int main(void)
 }
 
 ## Function Prototype
-
+```sh
 int _printf(const char *format, ...);
 
 ## Example Usage
+```sh
 _printf("Character: %c, String: %s, Number: %d\n", 'A', "Hello", 123);
 
 ## Output Examples
 Basic Example:
+```sh
 _printf("Hello, World!\n");
 
 the output :
 Hello, World!
 
 Multiple Specifiers:
+```sh
 _printf("Name: %s, Age: %d, Grade: %c\n", "Alice", 20, 'A');
 
 the Output:
 Name: Alice, Age: 20, Grade: A
 
 ## Custom Specifiers:
+```sh
+
 _printf("Binary: %b\n", 98);  
 Output: 1100010
 _printf("Non-printable: %S\n", "Best\nSchool"); 
@@ -123,7 +128,7 @@ Purpose: Parses the format string and processes each conversion specifier.
 Return Value: Number of characters printed, or -1 on error.
 
 ## Helper Functions for Conversion Specifiers
-
+```sh
 
 int print_char(va_list args); -> Handles %c.
 
