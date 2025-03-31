@@ -111,6 +111,7 @@ _printf("Hello, World!\n");
 the output :
 Hello, World!
 ```
+----------------------------
 - Multiple Specifiers:
 ``
 _printf("Name: %s, Age: %d, Grade: %c\n", "Alice", 20, 'A');
@@ -118,10 +119,10 @@ _printf("Name: %s, Age: %d, Grade: %c\n", "Alice", 20, 'A');
 the Output:
 Name: Alice, Age: 20, Grade: A
 ```
-
+----------------------------
 ## Custom Specifiers:
-```
 
+```
 _printf("Binary: %b\n", 98);  
 Output: 1100010
 _printf("Non-printable: %S\n", "Best\nSchool"); 
@@ -131,17 +132,22 @@ _printf("Reversed: %r\n", "Hello");
 _printf("ROT13: %R\n", "Hello");  
 Output: Uryyb
 ```
+
+
 ## Core Functions & Helpers
+
 ```
 int _printf(const char *format, ...);
 ```
+
+-----
 Purpose: Parses the format string and processes each conversion specifier.
 
 Return Value: Number of characters printed, or -1 on error.
 
 ## Helper Functions for Conversion Specifiers
-```
 
+```
 int print_char(va_list args); -> Handles %c.
 
 int print_string(va_list args); -> Handles %s.
@@ -166,8 +172,10 @@ int print_reverse(va_list args); -> Handles %r (reversed string).
 
 int print_ROT13(va_list args); -> Handles %R (ROT13 encoding).
 ```
+
 ## Man Page
 A manual page for _printf is available in man_3_printf. To view it locally:
+
 ```
 man ./man_3_printf
 ```
