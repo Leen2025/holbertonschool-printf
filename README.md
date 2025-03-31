@@ -193,5 +193,11 @@ man 3 printf
 
 ## Authors
 - Bader Al-Amri
-- Leen Al-Saleh
+```
+10670@holbertonstudents.com
+```
 
+- Leen Al-Saleh
+```
+10691@holbertonstudents.com
+```
