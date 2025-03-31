@@ -111,15 +111,17 @@ _printf("Hello, World!\n");
 the output :
 Hello, World!
 ```
-----------------------------
+
 - Multiple Specifiers:
-``
+
+```
 _printf("Name: %s, Age: %d, Grade: %c\n", "Alice", 20, 'A');
 
-the Output:
+the output:
 Name: Alice, Age: 20, Grade: A
 ```
-----------------------------
+
+
 ## Custom Specifiers:
 
 ```
@@ -140,10 +142,9 @@ Output: Uryyb
 int _printf(const char *format, ...);
 ```
 
------
-Purpose: Parses the format string and processes each conversion specifier.
+- Purpose: Parses the format string and processes each conversion specifier.
 
-Return Value: Number of characters printed, or -1 on error.
+- Return Value: Number of characters printed, or -1 on error.
 
 ## Helper Functions for Conversion Specifiers
 
@@ -174,7 +175,7 @@ int print_ROT13(va_list args); -> Handles %R (ROT13 encoding).
 ```
 
 ## Man Page
-A manual page for _printf is available in man_3_printf. To view it locally:
+-A manual page for _printf is available in man_3_printf. To view it locally:
 
 ```
 man ./man_3_printf
@@ -182,15 +183,15 @@ man ./man_3_printf
 
 ## Known Issues
 
-No known bugs at the moment.
+-No known bugs at the moment.
 
-Report issues via the project reposit
+-Report issues via the project reposit
 
 ## References & Related Commands
 
 man 3 printf
 
 ## Authors
-Bader Al-Amri
-Leen Al-Saleh
+- Bader Al-Amri
+- Leen Al-Saleh
 
