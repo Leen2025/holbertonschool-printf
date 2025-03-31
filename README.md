@@ -54,14 +54,14 @@ The `_printf` function is a custom-built implementation of the standard C `print
 
 ### Compilation Instructions
 The project is compiled on **Ubuntu 22.04** using `gcc` with the following flags:
-```sh
+``sh
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o _printf
 
-main.h header file is included in all function implementations
+- main.h header file is included in all function implementations
 
-## Running a Test File
+##Running a Test File
 test file main.c compile and execute it as follows:
-```sh
+``sh
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o _printf
 ./_printf
 
@@ -89,26 +89,26 @@ int main(void)
 int _printf(const char *format, ...);
 
 ## Example Usage
-```sh
+``sh
 _printf("Character: %c, String: %s, Number: %d\n", 'A', "Hello", 123);
 
 ## Output Examples
 Basic Example:
-```sh
+``sh
 _printf("Hello, World!\n");
 
 the output :
 Hello, World!
 
 Multiple Specifiers:
-```sh
+``sh
 _printf("Name: %s, Age: %d, Grade: %c\n", "Alice", 20, 'A');
 
 the Output:
 Name: Alice, Age: 20, Grade: A
 
 ## Custom Specifiers:
-```sh
+``sh
 
 _printf("Binary: %b\n", 98);  
 Output: 1100010
