@@ -188,34 +188,163 @@ int print_string(va_list s);/*writes the character c to stdout */
 int print_int(va_list i);/*function that prints an integer */
 int print_dec(va_list d);/* function that prints an decimal*/
 ````
-## How to use.
-### Complilation
-All of the ``.c`` files along with a main.c file are to be compiled with ``gcc 4.8.4`` on Ubuntu 14.04 LTS with the flags ``-Wall Werror`` ``-Westra`` and ``-pedantic.``
+## Usage
 
-The files will be compiled this way:
-- ``gcc -Wall -Werror -Wextra -pedantic *.c``
-#### Use.
-In the ``main.c`` file, use the ``_printf`` function like so:
-```c
+- All the files are to be compiled on Ubuntu 22.04 Compile your code with `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c` Include the "main.h" header file on the functions using the `_printf()`.
+
+
+- If you have a test file (e.g., `main.c`), compile and run it as follows:
+
+
+
+```
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o _printf
+./_printf
+
+```
+
+---
+
+## Example (main.c)
+
+```
 #include "main.h"
-/**
- * main - main function of program
- * Return: always 0
- */
+
 int main(void)
 {
-	int num;
-	char *string;
-	
-	num = 98;
-	string = "Hello, Holberon!"
-	_printf("%s is %i.\n", string, num);
-	return (0);
+    _printf("Character: %c\nString: %s\nPercent: %%\n", 'A', "Hello");
+    _printf("Integer: %d\n", 123);
+    _printf("Binary: %b\n", 98);
+    _printf("Unsigned: %u\n", 300);
+    _printf("Octal: %o\n", 100);
+    _printf("Hexadecimal: %x\n", 255);
+    _printf("Pointer: %p\n", (void *)main);
+    _printf("Non-printable: %S\n", "Best\nSchool");
+    _printf("Reversed: %r\n", "Hello");
+    _printf("ROT13: %R\n", "Hello");
+    return (0);
 }
 ```
-```{bash}
-linux>$  gcc -Wall -Werror -Wextra -pedantic *.c -o print_program
-linux>$  ./print_program
-Hello, Holberton is 98.
-linux>$
-``` 
+
+---
+## Example:
+
+```
+_printf("Character: %c, String: %s, Number: %d\n", 'A', "Hello", 123);
+```
+
+---
+
+## EXAMPLES
+
+### Basic Output:
+
+```
+_printf("Hello, World!\n");
+```
+
+### Output:
+
+```
+Hello, World!
+```
+
+### Multiple Conversion Specifiers:
+
+```
+_printf("Name: %s, Age: %d, Grade: %c\n", "Alice", 20, 'A');
+```
+
+### Output:
+
+```
+Name: Alice, Age: 20, Grade: A
+```
+
+### Custom Specifiers:
+
+```
+_printf("Binary: %b\n", 98);             // Output: 1100010
+_printf("Non-printable: %S\n", "Best\nSchool");  // Output: Best\x0ASchool
+_printf("Reversed: %r\n", "Hello");        // Output: olleH
+_printf("ROT13: %R\n", "Hello");           // Output: Uryyb
+```
+
+---
+
+## FUNCTIONS AND PROTOTYPES
+
+- Below is an overview of key functions and their purposes. (Adjust function names if your implementation differs.)
+
+`_printf`
+
+```
+int _printf(const char *format, ...);
+```
+
+- Purpose: Main entry point; parses the format string and processes conversion specifiers.
+
+- Return Value: Total number of characters printed, or a negative value on error.
+
+---
+
+## Helper Functions for Conversion Specifiers:
+
+- `int print_char(va_list args); – Handles %c`.
+
+- `int print_string(va_list args); – Handles %s`.
+
+- `int print_int(va_list args); – Handles %d and %i`.
+
+- `int print_unsigned(va_list args); – Handles %u`.
+
+- `int print_octal(va_list args); – Handles %o`.
+
+- `int print_hex(va_list args); – Handles %x`.
+
+- `int print_HEX(va_list args); – Handles %X`.
+
+- `int print_binary(va_list args); – Handles %b`.
+
+- `int print_pointer(va_list args); – Handles %p`.
+
+- `int print_S(va_list args); – Handles %S (non-printable characters)`.
+
+- `int print_reverse(va_list args); – Handles %r (reversed string)`.
+
+- `int print_ROT13(va_list args); – Handles %R (ROT13 encoding)`.
+
+
+### Formatting Helpers:
+
+- Functions such as handle_flags, handle_width, handle_precision, etc., manage flags, field width, precision, and length modifiers.
+
+---
+
+## MAN PAGE
+
+- A manual page for the `_printf` function is provided in the file `man_3_printf`. To view it locally:
+
+```
+man ./man_3_printf
+```
+
+---
+
+## BUGS
+- No known bugs at the moment. Please report any bugs or issues using the project repository.
+
+---
+
+## SEE ALSO
+
+`man_3_printf`
+
+---
+
+## AUTHORS
+
+- 'Leen Al-saleh'
+
+- 'bader Al-Amri'
+
