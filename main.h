@@ -79,6 +79,11 @@ typedef struct convert_max_l_h
 	char s;
 	void (*func)(stackvar *stack);
 } convert_max_l_h;
+
+stackvar *stackinit(va_list *arguments_list, const char *format);
+void create_buffer(stackvar *stack);
+void place_buffer(stackvar *stack, char *str);
+void ret_buff(char *str, unsigned int n);
 int printf_pointer(va_list val);
 int printf_hex_aux(unsigned long int num);
 int printf_HEX_aux(unsigned int num);
@@ -102,5 +107,5 @@ int printf_char(va_list val);
 int printf_string(va_list val);
 int _putchar(char c);
 int _printf(const char *format, ...);
-
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 #endif
