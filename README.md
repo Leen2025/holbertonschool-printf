@@ -344,7 +344,7 @@ man ./man_3_printf
 
 ## AUTHORS
 
-- 'Leen Al-saleh'
+- Leen Al-saleh
 
-- 'bader Al-Amri'
+- bader Al-Amri
 
