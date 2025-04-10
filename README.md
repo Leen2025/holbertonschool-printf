@@ -341,6 +341,9 @@ man ./man_3_printf
 `man_3_printf`
 
 ---
+## FLOW CHART
+
+![Image](https://github.com/user-attachments/assets/f67beeb3-c653-4d2b-991c-fdf0b65cab13)
 
 ## AUTHORS
 
