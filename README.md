@@ -102,4 +102,120 @@ If a writing error occurs, the error indicator (ferror) is set and a negative nu
 
 
 ------------
- 
+#### Tasks required for this project
+
+
+------------
+
+0. ###### I am not going anywhere. You can print that wherever you want to. I'm here and I am a Spur for life1.  I am not going anywhere. You can print that wherever you want to. I'm here and I am a Spur for life. 
+Write a function that produces output according to a format.
+Handle the following conversion specifiers:
+- c
+- s
+- %
+
+1. ###### Education is when you read the fine print. Experience is what you get if you dont
+Handle the following conversion specifiers:
+- d
+- i
+
+2. ###### Just because its in print doesn't mean its the gospel
+Create a man page for the function
+
+3. ###### With a face like mine, I do better in print
+Handle the following conversion specifiers:
+- b
+
+4. ###### What one has not experienced, one will never understand in print
+Handle the following conversion specifiers:
+- u
+- x
+- o
+- x
+- X
+
+5. ###### Nothing in fine print is ever good news
+Use a local buffer of 1024 chars in order to call write as little as possible.
+
+6. ###### Handle the following custom conversion specifier
+- S : prints the string.
+- Non printable characters (0 < ASCII value < 32 or >= 127) are printed this way: \x, followed by the ASCII code value in hexadecimal (upper case - always 2 characters).
+
+7. ###### How is the world ruled and led to war? Diplomats lie to journalists and believe these lies when they see them in print
+Handle the following conversion specifier: p
+
+8. ###### The big print gives and the small print takes away
+Handle the following flag characters for non-custom conversion specifiers:
+- ´+´
+- space
+- ´#´ 
+
+9. ###### Sarcasm is lost in print
+Handle the following length modifiers for non-custom conversion specifiers:
+- l
+- h
+Conversion specifiers to handle: d, i, u, o, x, X
+
+10. ###### Print some money and give it to us for the rain forests
+Handle the field width for non-custom conversion specifiers.
+
+11. ###### The negative is the equivalent of the composer's score, and the print the performance
+Handle the precision for non-custom conversion specifiers.
+
+12. ###### It's depressing when you're still around and your albums are out of print
+Handle the 0 flag character for non-custom conversion specifiers.
+
+13. ###### Every time that I wanted to give up, if I saw an interesting textile, print what ever, suddenly I would see a collection
+Handle the - flag character for non-custom conversion specifiers.
+
+14. ###### Print is the sharpest and the strongest weapon of our party
+Handle the following custom conversion specifier:
+ - r : prints the reversed string
+
+15. ###### The flood of print has turned reading into a process of gulping rather than savoring 
+Handle the following custom conversion specifier:
+- R: prints the rot13'ed string
+
+16. ###### *
+All the above options work well together.
+## Functions we use.
+
+````c
+int _putchar(char c); /*writes the character c to stdout */
+int _printf(const char *format, ...);/* function that produces output according to a format.*/
+int print_char(va_list c);/*writes the character c to stdout */
+int print_string(va_list s);/*writes the character c to stdout */
+int print_int(va_list i);/*function that prints an integer */
+int print_dec(va_list d);/* function that prints an decimal*/
+````
+## How to use.
+### Complilation
+All of the ``.c`` files along with a main.c file are to be compiled with ``gcc 4.8.4`` on Ubuntu 14.04 LTS with the flags ``-Wall Werror`` ``-Westra`` and ``-pedantic.``
+
+The files will be compiled this way:
+- ``gcc -Wall -Werror -Wextra -pedantic *.c``
+#### Use.
+In the ``main.c`` file, use the ``_printf`` function like so:
+```c
+#include "main.h"
+/**
+ * main - main function of program
+ * Return: always 0
+ */
+int main(void)
+{
+	int num;
+	char *string;
+	
+	num = 98;
+	string = "Hello, Holberon!"
+	_printf("%s is %i.\n", string, num);
+	return (0);
+}
+```
+```{bash}
+linux>$  gcc -Wall -Werror -Wextra -pedantic *.c -o print_program
+linux>$  ./print_program
+Hello, Holberton is 98.
+linux>$
+``` 
